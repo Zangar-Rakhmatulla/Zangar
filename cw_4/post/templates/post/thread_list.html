@@ -1,0 +1,11 @@
+<!-- templates/post/thread_list.html -->
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Threads</h2>
+    <ul>
+        {% for thread in threads %}
+            <li><a href="{% url 'thread_detail' id=thread.id %}">{{ thread.name }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'thread_edit' id=0 %}" class="btn btn-success">Create new Thread</a>
+{% endblock %}

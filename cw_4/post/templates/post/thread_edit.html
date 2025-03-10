@@ -1,0 +1,20 @@
+<!-- templates/post/thread_edit.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{% if thread %}Edit{% else %}Create{% endif %} Thread</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">
+            {% if thread %}Update{% else %}Create{% endif %}
+        </button>
+    </form>
+
+    {% if thread %}
+        <a href="{% url 'thread_detail' id=thread.id %}" class="btn btn-secondary">Cancel</a>
+    {% else %}
+        <a href="{% url 'thread_list' %}" class="btn btn-secondary">Cancel</a>
+    {% endif %}
+{% endblock %}
