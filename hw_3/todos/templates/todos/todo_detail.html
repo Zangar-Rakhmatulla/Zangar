@@ -1,0 +1,9 @@
+<!-- todos/templates/todos/todo_detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ todo.title }}</h2>
+<p>{{ todo.description }}</p>
+<p><strong>Due Date:</strong> {{ todo.due_date }}</p>
+<p><strong>Status:</strong> {% if todo.status %} Completed {% else %} Pending {% endif %}</p>
+{% endblock %}

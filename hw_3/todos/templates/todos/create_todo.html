@@ -1,0 +1,11 @@
+<!-- todos/templates/todos/create_todo.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Create New Todo</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+{% endblock %}
