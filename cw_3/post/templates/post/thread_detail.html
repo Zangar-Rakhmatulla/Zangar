@@ -1,0 +1,19 @@
+<!-- post/templates/post/thread_detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ thread.name }}</h2>
+<p>{{ thread.description }}</p>
+<h3>Posts</h3>
+<ul>
+    {% for post in posts %}
+    <li>{{ post.title }} by {{ post.author }} | <a href="{% url 'edit_post' id=post.id %}">Edit</a> | <a href="{% url 'delete_post' id=post.id %}">Delete</a></li>
+    {% endfor %}
+</ul>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Create Post</button>
+</form>
+{% endblock %}

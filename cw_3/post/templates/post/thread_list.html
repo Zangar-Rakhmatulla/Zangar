@@ -1,0 +1,34 @@
+<!-- post/templates/post/thread_list.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Threads</h2>
+
+<!-- Форма для создания нового треда -->
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Create Thread</button>
+</form>
+
+<!-- Список тредов в виде таблицы -->
+<table class="table mt-3">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for thread in threads %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{ thread.name }}</td>
+      <td>{{ thread.description }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
