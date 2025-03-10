@@ -1,0 +1,27 @@
+{% extends 'todos/base.html' %}
+
+{% block content %}
+<h2>Todo List: {{ todo_list.title }}</h2>
+<p>{{ todo_list.description }}</p>
+
+<h3>Tasks:</h3>
+<ul>
+    {% for todo in todos %}
+        <li>
+            {{ todo.title }} - Due: {{ todo.due_date }} - {% if todo.status %}Completed{% else %}Pending{% endif %}
+            <a href="{% url 'todo_edit' id=todo.id %}">Edit</a> | 
+            <a href="{% url 'todo_delete' id=todo.id %}">Delete</a>
+        </li>
+    {% endfor %}
+</ul>
+
+<h3>Add New Task</h3>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Add Task</button>
+</form>
+
+<a href="{% url 'todo_list_edit' id=todo_list.id %}">Edit Todo List</a> | 
+<a href="{% url 'todo_list_delete' id=todo_list.id %}">Delete Todo List</a>
+{% endblock %}
